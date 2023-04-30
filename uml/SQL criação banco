@@ -1,0 +1,114 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS gestaolocadora.usuario;
+DROP TABLE IF EXISTS gestaolocadora.endereco;
+DROP TABLE IF EXISTS gestaolocadora.veiculo;
+DROP TABLE IF EXISTS gestaolocadora.reserva;
+SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE gestaolocadora.usuario (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    login VARCHAR(20) NOT NULL,
+    senha VARCHAR(50) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    genero INTEGER NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+	administrador TINYINT NOT NULL,
+	ativo TINYINT NOT NULL,
+    idEndereco INTEGER NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE (login)
+);
+
+CREATE TABLE gestaolocadora.endereco (
+    id INTEGER NOT NULL,
+    cep INTEGER NOT NULL,
+    logradouro VARCHAR(150) NOT NULL,
+    numero INTEGER NOT NULL,
+    complemento VARCHAR(50),
+    bairro VARCHAR(100) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    uf VARCHAR(2) NOT NULL,
+    pais VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE gestaolocadora.veiculo (
+    id INTEGER NOT NULL,
+    marca VARCHAR(30) NOT NULL,
+    modelo VARCHAR(150) NOT NULL,
+	ano INTEGER NOT NULL,
+    cor VARCHAR(50) NOT NULL,
+    categoria INTEGER NOT NULL,
+	placa VARCHAR(7) NOT NULL,
+	ativo TINYINT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE gestaolocadora.reserva (
+    id INTEGER NOT NULL,
+    idCliente INTEGER NOT NULL,
+    idVeiculo INTEGER NOT NULL,
+    dtContratacao DATETIME NOT NULL,
+    dtPrevDevolucao DATETIME NOT NULL,
+    dtDevolucao DATETIME,
+    status INTEGER NOT NULL,
+	valorDiaria DOUBLE NOT NULL,
+    percMultaDiaria DOUBLE NOT NULL,
+    multaTotal DOUBLE,
+    valorTotalPrev DOUBLE NOT NULL,
+    valorTotal DOUBLE,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE gestaolocadora.manutencao (
+    id INTEGER NOT NULL,
+    idVeiculo INTEGER NOT NULL,
+	descricao VARCHAR(255) NOT NULL,
+	status INTEGER NOT NULL,
+    dtInicio DATETIME NOT NULL,
+    dtPrevFim DATETIME NOT NULL,
+    dtFim DATETIME,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE `usuario` ADD FOREIGN KEY (`idEndereco`) REFERENCES `endereco`(`id`);
+ALTER TABLE `reserva` ADD FOREIGN KEY (`idCliente`) REFERENCES `usuario`(`id`);
+ALTER TABLE `reserva` ADD FOREIGN KEY (`idVeiculo`) REFERENCES `veiculo`(`id`);
+ALTER TABLE `manutencao` ADD FOREIGN KEY (`idVeiculo`) REFERENCES `veiculo`(`id`);
+
+insert into gestaolocadora.endereco (id, cep, logradouro, numero, complemento, bairro, cidade, uf, pais) values (1, 89838000, 'Rua Fictícia', 999, 'apto. 999', 'Centro', 'Galvão', 'SC', 'Brasil');
+insert into gestaolocadora.usuario (id, login, senha, nome, genero, telefone, administrador, idendereco) values(1, 'root','123','Root', 2, '+5549999999999', 1, 1);
+
+DELIMITER //
+create or replace function gestaolocadora.getStatusVeiculo(idVeiculo int, dataInicio DateTime, dataFim DateTime, idReserva int, idManutencao int) returns int
+begin
+  Declare qtdeReservas int;
+  Declare qtdeManutencoes int;
+  
+  select count(r.id) into qtdeReservas
+    from reserva r
+   where r.idVeiculo = idVeiculo
+     and r.status = 0 # Em andamento
+     and (idReserva = 0 or r.id <> idReserva)
+     and ((dataInicio <= r.dtContratacao) or (dataInicio <= r.dtPrevDevolucao))
+     and dataFim >= r.dtContratacao;
+
+  select count(m.id) into qtdeManutencoes
+    from manutencao m
+   where m.idVeiculo = idVeiculo
+     and m.status = 0 # Em aberto
+     and (idManutencao = 0 or m.id <> idManutencao)
+     and ((dataInicio <= m.dtInicio) or (dataInicio <= m.dtPrevFim))
+     and dataFim >= m.dtInicio;
+     
+  if (qtdeReservas > 0) then
+    if (qtdeManutencoes > 0) then
+	  return 3; # Reservado e em manuteção
+    else
+      return 1; # Reservado
+    end if;
+  elseif (qtdeManutencoes > 0) then
+    return 2; # Em manutenção
+  end if;
+  return 0; # Disponível
+end;

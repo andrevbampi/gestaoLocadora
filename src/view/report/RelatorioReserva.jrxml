@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.3.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioReserva" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="765d2b1e-d3cd-4b4b-b4ee-32a6ffa7da25">
+	<property name="ireport.zoom" value="1.2100000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="247"/>
+	<field name="nomeCliente" class="java.lang.String"/>
+	<field name="enderecoCliente1" class="java.lang.String"/>
+	<field name="enderecoCliente2" class="java.lang.String"/>
+	<field name="telefoneCliente" class="java.lang.String"/>
+	<field name="descricaoVeiculo" class="java.lang.String"/>
+	<field name="categoriaVeiculo" class="java.lang.String"/>
+	<field name="dataContratacaoReserva" class="java.lang.String"/>
+	<field name="dataPrevDevolucaoReserva" class="java.lang.String"/>
+	<field name="dataDevolucaoReserva" class="java.lang.String"/>
+	<field name="valorDiariaReserva" class="java.lang.String"/>
+	<field name="percMultaDiariaReserva" class="java.lang.String"/>
+	<field name="valorTotalPrevReserva" class="java.lang.String"/>
+	<field name="diasPrevReserva" class="java.lang.String"/>
+	<field name="totalDiasReserva" class="java.lang.String"/>
+	<field name="multaTotalReserva" class="java.lang.String"/>
+	<field name="diasAtrasoReserva" class="java.lang.String"/>
+	<field name="valorTotalReserva" class="java.lang.String"/>
+	<field name="statusReserva" class="java.lang.String"/>
+	<field name="codigoReserva" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="113" y="0" width="381" height="46" uuid="0dd68d9a-41e1-4f95-b3f8-07506260c2fb"/>
+				<textElement>
+					<font fontName="Arial" size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESERVA DE VEÍCULO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="7" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="426" splitType="Stretch">
+			<textField>
+				<reportElement x="43" y="40" width="502" height="20" uuid="d9c52c62-b09d-4e4f-b91e-acb39a3a0a52"/>
+				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="40" width="41" height="20" uuid="d5306c52-3b66-44a2-9fe1-d855725123d7"/>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="60" width="53" height="20" uuid="8b48cad0-4b93-4fcf-b669-cd0b887481f0"/>
+				<text><![CDATA[Endereço: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="60" width="490" height="20" uuid="5f907260-7050-4732-9065-58db3d08462e"/>
+				<textFieldExpression><![CDATA[$F{enderecoCliente1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="80" width="543" height="20" uuid="a07ff531-e14e-41ce-bd84-f256e9219a4e"/>
+				<textFieldExpression><![CDATA[$F{enderecoCliente2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="100" width="53" height="20" uuid="9d85cfd1-d88b-4df1-a939-58fbd5eb4702"/>
+				<text><![CDATA[Telefone:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="100" width="490" height="20" uuid="dc2b8bca-8c23-49c0-a01c-e13c6b3210d2"/>
+				<textFieldExpression><![CDATA[$F{telefoneCliente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="130" width="555" height="1" uuid="3c407898-7ab2-4b3b-a910-39a194444988"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="143" width="41" height="20" uuid="3bfe452f-9482-4306-adad-91c72fbda237"/>
+				<text><![CDATA[Veículo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="43" y="143" width="502" height="20" uuid="94afc40e-c672-4133-8c67-0671ff9f8368"/>
+				<textFieldExpression><![CDATA[$F{descricaoVeiculo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="163" width="53" height="20" uuid="8085a78d-d308-44e4-8fa0-61b3beb6d74a"/>
+				<text><![CDATA[Categoria:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="163" width="490" height="20" uuid="d625acc5-c5d9-4b3d-8fb9-c7c6b5cc1300"/>
+				<textFieldExpression><![CDATA[$F{categoriaVeiculo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="193" width="555" height="1" uuid="2beff6d4-a1a9-44a5-8345-faeecd10bda1"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="205" width="100" height="20" uuid="be9de213-0afa-4386-9f7d-49d9d993fc26"/>
+				<text><![CDATA[Data de contratação:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="205" width="443" height="20" uuid="1f67a6ff-6f3e-4b86-ab10-86300d1558ec"/>
+				<textFieldExpression><![CDATA[$F{dataContratacaoReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="225" width="133" height="20" uuid="feef7c02-25f2-49d3-b5c1-b1bd0997618e"/>
+				<text><![CDATA[Data prevista de devolução:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="225" width="410" height="20" uuid="3b0cd4f7-a20b-4b79-928a-852b97fd2926"/>
+				<textFieldExpression><![CDATA[$F{dataPrevDevolucaoReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="245" width="100" height="20" uuid="a657402a-8e33-4a0e-9e88-c0bd3baceb30"/>
+				<text><![CDATA[Data de devolução:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="245" width="443" height="20" uuid="997fa831-1820-4b9a-a761-628aa2288222"/>
+				<textFieldExpression><![CDATA[$F{dataDevolucaoReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="265" width="41" height="20" uuid="bbfba315-9a4a-4c8d-9473-ce6c33cb26a5"/>
+				<text><![CDATA[Status:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="43" y="265" width="502" height="20" uuid="5748ec69-1d6a-49af-8e7a-34c14459857f"/>
+				<textFieldExpression><![CDATA[$F{statusReserva}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="295" width="555" height="1" uuid="473f7107-badf-4468-a2e2-48aa50127fe7"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="306" width="66" height="20" uuid="d23470db-9ea5-43c7-8d6a-5d158af893a5"/>
+				<text><![CDATA[Valor diária:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="68" y="306" width="205" height="20" uuid="a98eb205-1e0f-4074-96ee-ea2527506e1c"/>
+				<textFieldExpression><![CDATA[$F{valorDiariaReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="273" y="306" width="89" height="20" uuid="16da9427-4a9f-46f8-96b0-fa5aea1e45bd"/>
+				<text><![CDATA[Percentual multa:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="362" y="306" width="183" height="20" uuid="70041002-d893-4dc1-9dfa-5366918505e3"/>
+				<textFieldExpression><![CDATA[$F{percMultaDiariaReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="326" width="78" height="20" uuid="dee95c61-f2ff-4048-b027-320df348d15d"/>
+				<text><![CDATA[Dias previstos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="326" width="193" height="20" uuid="7f2c9ac1-81a5-4cf3-83ff-9e9da6da43b3"/>
+				<textFieldExpression><![CDATA[$F{diasPrevReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="273" y="326" width="77" height="20" uuid="52ee12dc-f477-4e07-bad0-45441fe59a2d"/>
+				<text><![CDATA[Dias de atraso:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="326" width="195" height="20" uuid="7f1e2b3a-4343-42c2-a3f8-5a57fc8dacab"/>
+				<textFieldExpression><![CDATA[$F{diasAtrasoReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="346" width="66" height="20" uuid="9c3705a2-138e-4f72-95b9-ffc1dca25015"/>
+				<text><![CDATA[Dias totais:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="68" y="346" width="203" height="20" uuid="69c7a95d-04c5-41a8-9f18-d0e1f754f742"/>
+				<textFieldExpression><![CDATA[$F{totalDiasReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="273" y="346" width="59" height="20" uuid="98a18656-8d38-4779-8cde-4876c6e29e17"/>
+				<text><![CDATA[Valor multa:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="332" y="346" width="213" height="20" uuid="83b24bdb-60ce-44fc-a02d-940230d3d2b3"/>
+				<textFieldExpression><![CDATA[$F{multaTotalReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="366" width="78" height="20" uuid="cc0f4795-f14f-42fb-bdf0-e144b20c194a"/>
+				<text><![CDATA[Valor previsto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="366" width="465" height="20" uuid="9f837f15-5b3a-4709-a7af-2ced79b0adef"/>
+				<textFieldExpression><![CDATA[$F{valorTotalPrevReserva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="396" width="100" height="30" uuid="f4829965-28c9-4dbc-bc95-9a271eaba757"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="396" width="443" height="30" uuid="1abae6c8-8077-4bf9-8a4f-31d0dd42ed20"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorTotalReserva}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="31" width="555" height="1" uuid="665836e2-f9d3-4221-80f0-36e00fa9acd7">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="2" y="11" width="41" height="20" uuid="72271f71-3290-4e21-acf8-457bec34750d"/>
+				<text><![CDATA[Código:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="43" y="11" width="502" height="20" uuid="022a0b40-b1a9-4b54-9149-abec3b6335cb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="90defb86-93bc-4d14-9d2e-b8fac82f93bd"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{codigoReserva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="9" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="107" splitType="Stretch">
+			<line>
+				<reportElement x="33" y="68" width="215" height="1" uuid="1c8db83c-0ce8-4d76-9332-6d50caffaa18"/>
+			</line>
+			<line>
+				<reportElement x="304" y="67" width="215" height="1" uuid="0144ed8e-8f6f-4210-8191-335de821b706"/>
+			</line>
+			<staticText>
+				<reportElement x="88" y="69" width="126" height="20" uuid="c2f18676-c66a-4e66-ad5b-174397f086f7"/>
+				<text><![CDATA[Assinatura da locadora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="69" width="126" height="20" uuid="ade023ca-9c0c-4be9-b99a-efc4d093779c"/>
+				<text><![CDATA[Assinatura do cliente]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
