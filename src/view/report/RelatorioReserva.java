@@ -1,7 +1,5 @@
 package view.report;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,46 +21,18 @@ import view.util.ViewUtils;
 public abstract class RelatorioReserva {
 
 	public static void gerarRelatorio(Reserva reserva) throws BusinessRuleException {
-		// TODO Resolver problemas do iReport/JasperReports
-		/*try {
-			Connection connection = ConnectionMariaDB.getConnection();
-			//try {
-				InputStream arquivo = RelatorioReserva.class.getResourceAsStream("RelatorioReserva.jrxml");
-				JasperReport report =  JasperCompileManager.compileReport(arquivo);
-				JasperPrint print = JasperFillManager.fillReport(report, null, connection);
-				JasperViewer view = new JasperViewer(print);
-				view.setVisible(true);
-			//} finally {
-			//	ConnectionMariaDB.closeConnection();
-			//}
-		} catch (JRException ex) {
-			throw new BusinessRuleException("Erro ao gerar relatório: " + ex.getMessage());
-		} catch (SQLException ex) {
-			throw new BusinessRuleException("Erro de conexão de banco de dados ao gerar o relatório: " + ex.getMessage());
-		}*/
-		
 		try {
 			List<ModeloRelatorioReserva>listaReservas = setarValores(reserva);
-			//InputStream arquivo = RelatorioReserva.class.getResourceAsStream("RelatorioTesteLista.jrxml");
 			InputStream arquivo = RelatorioReserva.class.getResourceAsStream("RelatorioReserva.jrxml");
-				
 			JasperReport jasperReport =  JasperCompileManager.compileReport(arquivo);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, new JRBeanCollectionDataSource(listaReservas));
-			
-			//JasperViewer.viewReport(print, false);
 			JasperViewer jasperViewer = new JasperViewer(jasperPrint);
 
 			JDialog viewer = new JDialog(new javax.swing.JFrame(),"Visualização do Relatório", true);
-			
-			Toolkit tk = Toolkit.getDefaultToolkit();
-			//Dimension screenSize = tk.getScreenSize();
-			//viewer.setBounds(0, 0, screenSize.width, screenSize.height-40);
 			viewer.setSize(1024, 768);
 			viewer.getContentPane().add(jasperViewer.getContentPane());
 			viewer.setLocationRelativeTo(null);
 			viewer.setVisible(true);
-			//jasperViewer.setVisible(true);
-			//jasperViewer.setVisible(false);
 		} catch (JRException ex) {
 			throw new BusinessRuleException("Erro ao gerar relatório: " + ex.getMessage());
 		}
@@ -116,10 +86,10 @@ public abstract class RelatorioReserva {
 		return listaReservas;
 	}
 	
-	private static void gerarRelatorioSimulado(List<ModeloRelatorioReserva> listaReservas) {
+	/*private static void gerarRelatorioSimulado(List<ModeloRelatorioReserva> listaReservas) {
 		SimulacaoRelatorio simulacaoRelatorio = new SimulacaoRelatorio(listaReservas);
 		simulacaoRelatorio.setLocationRelativeTo(null);
 		simulacaoRelatorio.setVisible(true);
-	}
+	}*/
 	
 }
